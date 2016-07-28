@@ -1,4 +1,4 @@
-package com.pissay.halls;
+package com.pissay.chatra;
 
 import android.support.multidex.MultiDexApplication;
 

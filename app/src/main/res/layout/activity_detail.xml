@@ -104,32 +104,32 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:drawableTop="@drawable/food"
+                                android:drawableTop="@drawable/food_black"
                                 android:text="Food"
                                 style="@style/textcontent_for_image"/>
 
                             <TextView
-                                android:drawableTop="@drawable/drinks"
+                                android:drawableTop="@drawable/drinks_black"
                                 android:text="Drinks Allowed"
                                 style="@style/textcontent_for_image"/>
 
                             <TextView
-                                android:drawableTop="@drawable/ac"
+                                android:drawableTop="@drawable/ac_black"
                                 android:text="AC centralised"
                                 style="@style/textcontent_for_image"/>
 
                             <TextView
-                                android:drawableTop="@drawable/crowd"
+                                android:drawableTop="@drawable/crowd_black"
                                 android:text="80 to 500"
                                 style="@style/textcontent_for_image"/>
 
                             <TextView
-                                android:drawableTop="@drawable/car"
+                                android:drawableTop="@drawable/car_black"
                                 android:text="upto 50"
                                 style="@style/textcontent_for_image"/>
 
                             <TextView
-                                android:drawableTop="@drawable/valet"
+                                android:drawableTop="@drawable/valet_black"
                                 android:text="Valet Parking"
                                 style="@style/textcontent_for_image"/>
 
@@ -227,6 +227,96 @@
 
             </android.support.v7.widget.CardView>
 
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/card_margin">
+
+                <LinearLayout
+                    style="@style/Widget.CardContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Other Facilities"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:drawableTop="@drawable/generator_black"
+                                android:text="Generator"
+                                style="@style/textcontent_for_image"/>
+
+                            <TextView
+                                android:drawableTop="@drawable/projector_black"
+                                android:text="Projector"
+                                style="@style/textcontent_for_image"/>
+
+                            <TextView
+                                android:drawableTop="@drawable/microphone_black"
+                                android:text="Microphone"
+                                style="@style/textcontent_for_image"/>
+
+                            <TextView
+                                android:drawableTop="@drawable/sound_system_black"
+                                android:text="Sound System"
+                                style="@style/textcontent_for_image"/>
+
+                            <TextView
+                                android:drawableTop="@drawable/elevator_black"
+                                android:text="Elevator"
+                                style="@style/textcontent_for_image"/>
+
+                            <TextView
+                                android:drawableTop="@drawable/pool_black"
+                                android:text="Pool"
+                                style="@style/textcontent_for_image"/>
+
+                            <TextView
+                                android:drawableTop="@drawable/wheelchair_black"
+                                android:text="Wheelchair"
+                                style="@style/textcontent_for_image"/>
+
+                            <TextView
+                                android:drawableTop="@drawable/decoration_black"
+                                android:text="Outer Decoration"
+                                style="@style/textcontent_for_image"/>
+
+                            <TextView
+                                android:drawableTop="@drawable/homa_black"
+                                android:text="Homa"
+                                style="@style/textcontent_for_image"/>
+
+                            <TextView
+                                android:drawableTop="@drawable/leaf_black"
+                                android:text="Plantain leafs"
+                                style="@style/textcontent_for_image"/>
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:textColor="@android:color/white"
+                android:text="@string/reserve_now"/>
+            
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

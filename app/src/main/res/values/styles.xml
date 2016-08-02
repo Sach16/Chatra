@@ -59,4 +59,14 @@
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
     </style>
 
+    <style name="CalendarViewDayOfTheWeek">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:tag">dayOfWeek1</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>

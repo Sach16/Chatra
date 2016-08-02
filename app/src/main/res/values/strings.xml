@@ -20,6 +20,9 @@
     <string name="corporate_events">Corporate Events</string>
     <string name="engagements">Engagements</string>
 
+    <string name="reserve_now">Reserve Now</string>
+    <string name="check_availability">Check Availability</string>
+
     <string name="venue_halls">Venue Halls</string>
     <string name="easy_to_find">Easy To Find</string>
     <string name="book_venue">Book now, pay at venue</string>
@@ -27,5 +30,9 @@
     <string name="menu_and_pack">Menu &amp; Packages</string>
     <string name="menu_and_pack_details">Below listed prices are excluding all taxes. Tax on Food &amp; Beverages (F&amp;B) is 14.5 % Menu prices will be varies depending on guest requirment and number of people.</string>
 
+    <string name="sel_time_slot">Select Slot</string>
+    <string name="sel_date">Select Date</string>
+
+    <item type="id" name="CLICK"/>
 
 </resources>

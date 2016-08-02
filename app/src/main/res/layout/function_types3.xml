@@ -12,14 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_margin="20dp"
-        android:visibility="gone"
         android:background="@drawable/options_txt_block_bg"
+        android:layout_margin="20dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:background="@drawable/options_txt_block_bg2">
 
             <fragment
@@ -27,6 +27,33 @@
                 android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sel_date"
+                android:drawableRight="@drawable/check_in"
+                android:textColor="@android:color/white"
+                android:padding="10dp"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sel_time_slot"
+                android:drawableRight="@drawable/time_slot"
+                android:padding="10dp"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"/>
 
         </LinearLayout>
 
@@ -48,6 +75,7 @@
                     android:id="@+id/IV_WEDDING"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/image_selector"
                     android:layout_weight="1" />
 
                 <TextView
@@ -72,6 +100,7 @@
                     android:id="@+id/IV_BIRTHDAY"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/cake_stroke"
                     android:layout_weight="1" />
 
                 <TextView
@@ -96,6 +125,7 @@
                     android:id="@+id/IV_ENGAGEMENT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/diamond_stroke"
                     android:layout_weight="1" />
 
                 <TextView
@@ -127,6 +157,7 @@
                     android:id="@+id/IV_NAMING"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/naming_stroke"
                     android:layout_weight="1" />
 
                 <TextView
@@ -151,6 +182,7 @@
                     android:id="@+id/IV_CORPORATE"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/handshake_stroke"
                     android:layout_weight="1" />
 
                 <TextView
@@ -175,6 +207,7 @@
                     android:id="@+id/IV_PARTIES"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/champagne_stroke"
                     android:layout_weight="1" />
 
                 <TextView
@@ -198,8 +231,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="20dp"
-        android:clickable="true"
         android:visibility="gone"
+        android:clickable="true"
         android:src="@drawable/go_play"
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|right|end" />

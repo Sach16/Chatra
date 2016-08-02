@@ -34,10 +34,14 @@ import butterknife.Optional;
 /**
  * Created by S.K. Pissay on 14/7/16.
  */
-public class LocationOptionScreen extends AppCompatActivity implements View.OnClickListener{
+public class LocationOptionScreen extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "FragmentActivity";
     private static final int SLEEP = 1232;
+
+    private static final String CLICKED = "CLICKED";
+    private static final String UNCLICKED = "UNCLICKED";
+
     public UIHandler m_cObjUIHandler;
     /**
      * The Place autocomplete request code.
@@ -92,10 +96,11 @@ public class LocationOptionScreen extends AppCompatActivity implements View.OnCl
         ButterKnife.bind(this);
 
         m_cObjUIHandler = new UIHandler();
+        m_cObjUIHandler.sendEmptyMessageDelayed(SLEEP, 500);
     }
 
-    protected void handleUIMessage(Message pObjMessage){
-        switch (pObjMessage.what){
+    protected void handleUIMessage(Message pObjMessage) {
+        switch (pObjMessage.what) {
             case SLEEP:
                 upAnimation();
                 break;
@@ -105,14 +110,12 @@ public class LocationOptionScreen extends AppCompatActivity implements View.OnCl
     @Override
     protected void onResume() {
         super.onResume();
-        mIvWedding.setBackground(makeSelector(mIvWedding.getId()));
-        mIvBirthday.setBackground(makeSelector(mIvBirthday.getId()));
-        mIvEngagement.setBackground(makeSelector(mIvEngagement.getId()));
-        mIvNaming.setBackground(makeSelector(mIvNaming.getId()));
-        mIvCorporate.setBackground(makeSelector(mIvCorporate.getId()));
-        mIvParties.setBackground(makeSelector(mIvParties.getId()));
-
-        m_cObjUIHandler.sendEmptyMessageDelayed(SLEEP, 500);
+        mIvWedding.setTag(R.id.CLICK, UNCLICKED);
+        mIvBirthday.setTag(R.id.CLICK, UNCLICKED);
+        mIvEngagement.setTag(R.id.CLICK, UNCLICKED);
+        mIvNaming.setTag(R.id.CLICK, UNCLICKED);
+        mIvCorporate.setTag(R.id.CLICK, UNCLICKED);
+        mIvParties.setTag(R.id.CLICK, UNCLICKED);
     }
 
     @Override
@@ -157,10 +160,11 @@ public class LocationOptionScreen extends AppCompatActivity implements View.OnCl
     }
 
     @Optional
-    @OnClick({R.id.CV_BIRTHDAY, R.id.FAB_GO_SEARCH})
+    @OnClick({R.id.CV_BIRTHDAY, R.id.FAB_GO_SEARCH, R.id.IV_WEDDING, R.id.IV_BIRTHDAY, R.id.IV_ENGAGEMENT, R.id.IV_NAMING,
+            R.id.IV_CORPORATE, R.id.IV_PARTIES})
     public void onClick(View v) {
         Intent lIntent;
-        switch (v.getId()){
+        switch (v.getId()) {
             /*case R.id.ITEM_CARDVIEW:
                 placeAuto();
                 break;*/
@@ -171,6 +175,61 @@ public class LocationOptionScreen extends AppCompatActivity implements View.OnCl
             case R.id.FAB_GO_SEARCH:
                 lIntent = new Intent(this, HallsList.class);
                 startActivity(lIntent);
+                break;
+            //Image options
+            case R.id.IV_WEDDING:
+                if (((String) mIvWedding.getTag(R.id.CLICK)).equalsIgnoreCase(CLICKED)) {
+                    mIvWedding.setTag(R.id.CLICK, UNCLICKED);
+                    mIvWedding.setBackground(makeSelector(mIvWedding.getId(), false));
+                } else {
+                    mIvWedding.setTag(R.id.CLICK, CLICKED);
+                    mIvWedding.setBackground(makeSelector(mIvWedding.getId(), true));
+                }
+                break;
+            case R.id.IV_BIRTHDAY:
+                if (((String) mIvBirthday.getTag(R.id.CLICK)).equalsIgnoreCase(CLICKED)) {
+                    mIvBirthday.setTag(R.id.CLICK, UNCLICKED);
+                    mIvBirthday.setBackground(makeSelector(mIvBirthday.getId(), false));
+                } else {
+                    mIvBirthday.setTag(R.id.CLICK, CLICKED);
+                    mIvBirthday.setBackground(makeSelector(mIvBirthday.getId(), true));
+                }
+                break;
+            case R.id.IV_ENGAGEMENT:
+                if (((String) mIvEngagement.getTag(R.id.CLICK)).equalsIgnoreCase(CLICKED)) {
+                    mIvEngagement.setTag(R.id.CLICK, UNCLICKED);
+                    mIvEngagement.setBackground(makeSelector(mIvEngagement.getId(), false));
+                } else {
+                    mIvEngagement.setTag(R.id.CLICK, CLICKED);
+                    mIvEngagement.setBackground(makeSelector(mIvEngagement.getId(), true));
+                }
+                break;
+            case R.id.IV_NAMING:
+                if (((String) mIvNaming.getTag(R.id.CLICK)).equalsIgnoreCase(CLICKED)) {
+                    mIvNaming.setTag(R.id.CLICK, UNCLICKED);
+                    mIvNaming.setBackground(makeSelector(mIvCorporate.getId(), false));
+                } else {
+                    mIvNaming.setTag(R.id.CLICK, CLICKED);
+                    mIvNaming.setBackground(makeSelector(mIvCorporate.getId(), true));
+                }
+                break;
+            case R.id.IV_CORPORATE:
+                if (((String) mIvCorporate.getTag(R.id.CLICK)).equalsIgnoreCase(CLICKED)) {
+                    mIvCorporate.setTag(R.id.CLICK, UNCLICKED);
+                    mIvCorporate.setBackground(makeSelector(mIvCorporate.getId(), false));
+                } else {
+                    mIvCorporate.setTag(R.id.CLICK, CLICKED);
+                    mIvCorporate.setBackground(makeSelector(mIvCorporate.getId(), true));
+                }
+                break;
+            case R.id.IV_PARTIES:
+                if (((String) mIvParties.getTag(R.id.CLICK)).equalsIgnoreCase(CLICKED)) {
+                    mIvParties.setTag(R.id.CLICK, UNCLICKED);
+                    mIvParties.setBackground(makeSelector(mIvParties.getId(), false));
+                } else {
+                    mIvParties.setTag(R.id.CLICK, CLICKED);
+                    mIvParties.setBackground(makeSelector(mIvParties.getId(), true));
+                }
                 break;
         }
     }
@@ -205,45 +264,50 @@ public class LocationOptionScreen extends AppCompatActivity implements View.OnCl
         });
     }
 
-    public StateListDrawable makeSelector(int pId) {
+    public StateListDrawable makeSelector(int pId, boolean pIsSelected) {
         StateListDrawable res = new StateListDrawable();
         res.setExitFadeDuration(400);
-        switch (pId){
-            case R.id.IV_WEDDING:
+        switch (pId) {
+            /*case R.id.IV_WEDDING:
                 res.addState(new int[]{android.R.attr.state_pressed}, getResources().getDrawable(R.drawable.bride));
                 res.addState(new int[]{android.R.attr.state_focused}, getResources().getDrawable(R.drawable.bride));
-                res.addState(new int[]{android.R.attr.state_selected}, getResources().getDrawable(R.drawable.bride));
-                res.addState(new int[] { }, getResources().getDrawable(R.drawable.bride_stroke));
+                res.addState(new int[]{}, getResources().getDrawable(R.drawable.bride_stroke));
+                break;*/
+            case R.id.IV_WEDDING:
+                if (pIsSelected)
+                    res.addState(new int[]{}, getResources().getDrawable(R.drawable.bride));
+                else
+                    res.addState(new int[]{}, getResources().getDrawable(R.drawable.bride_stroke));
                 break;
             case R.id.IV_BIRTHDAY:
-                res.addState(new int[]{android.R.attr.state_pressed}, getResources().getDrawable(R.drawable.cake));
-                res.addState(new int[]{android.R.attr.state_focused}, getResources().getDrawable(R.drawable.cake));
-                res.addState(new int[]{android.R.attr.state_selected}, getResources().getDrawable(R.drawable.cake));
-                res.addState(new int[] { }, getResources().getDrawable(R.drawable.cake_stroke));
+                if (pIsSelected)
+                    res.addState(new int[]{}, getResources().getDrawable(R.drawable.cake));
+                else
+                    res.addState(new int[]{}, getResources().getDrawable(R.drawable.cake_stroke));
                 break;
             case R.id.IV_ENGAGEMENT:
-                res.addState(new int[]{android.R.attr.state_pressed}, getResources().getDrawable(R.drawable.diamond));
-                res.addState(new int[]{android.R.attr.state_focused}, getResources().getDrawable(R.drawable.diamond));
-                res.addState(new int[]{android.R.attr.state_selected}, getResources().getDrawable(R.drawable.diamond));
-                res.addState(new int[] { }, getResources().getDrawable(R.drawable.diamond_stroke));
+                if (pIsSelected)
+                    res.addState(new int[]{}, getResources().getDrawable(R.drawable.diamond));
+                else
+                    res.addState(new int[]{}, getResources().getDrawable(R.drawable.diamond_stroke));
                 break;
             case R.id.IV_NAMING:
-                res.addState(new int[]{android.R.attr.state_pressed}, getResources().getDrawable(R.drawable.naming));
-                res.addState(new int[]{android.R.attr.state_focused}, getResources().getDrawable(R.drawable.naming));
-                res.addState(new int[]{android.R.attr.state_selected}, getResources().getDrawable(R.drawable.naming));
-                res.addState(new int[] { }, getResources().getDrawable(R.drawable.naming_stroke));
+                if (pIsSelected)
+                    res.addState(new int[]{}, getResources().getDrawable(R.drawable.naming));
+                else
+                    res.addState(new int[]{}, getResources().getDrawable(R.drawable.naming_stroke));
                 break;
             case R.id.IV_CORPORATE:
-                res.addState(new int[]{android.R.attr.state_pressed}, getResources().getDrawable(R.drawable.handshake));
-                res.addState(new int[]{android.R.attr.state_focused}, getResources().getDrawable(R.drawable.handshake));
-                res.addState(new int[]{android.R.attr.state_selected}, getResources().getDrawable(R.drawable.handshake));
-                res.addState(new int[] { }, getResources().getDrawable(R.drawable.handshake_stroke));
+                if (pIsSelected)
+                    res.addState(new int[]{}, getResources().getDrawable(R.drawable.handshake));
+                else
+                    res.addState(new int[]{}, getResources().getDrawable(R.drawable.handshake_stroke));
                 break;
             case R.id.IV_PARTIES:
-                res.addState(new int[]{android.R.attr.state_pressed}, getResources().getDrawable(R.drawable.champagne));
-                res.addState(new int[]{android.R.attr.state_focused}, getResources().getDrawable(R.drawable.champagne));
-                res.addState(new int[]{android.R.attr.state_selected}, getResources().getDrawable(R.drawable.champagne));
-                res.addState(new int[] { }, getResources().getDrawable(R.drawable.champagne_stroke));
+                if (pIsSelected)
+                    res.addState(new int[]{}, getResources().getDrawable(R.drawable.champagne));
+                else
+                    res.addState(new int[]{}, getResources().getDrawable(R.drawable.champagne_stroke));
                 break;
         }
 //        res.addState(new int[]{}, new ColorDrawable(Color.TRANSPARENT));

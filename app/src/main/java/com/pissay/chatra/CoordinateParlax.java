@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -18,15 +19,20 @@ import com.pissay.chatra.utils.ToolBarHeaderView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by S.K. Pissay on 9/7/16.
  */
-public class CoordinateParlax extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
+public class CoordinateParlax extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener, View.OnClickListener {
 
     @Nullable
     @BindView(R.id.backdrop)
     ImageView iv_backdrop;
+
+    @Nullable
+    @BindView(R.id.CHECK_AVAILABILITY)
+    Button bn_checkAvail;
 
     @Nullable
     @BindView(R.id.appbar)
@@ -89,6 +95,9 @@ public class CoordinateParlax extends AppCompatActivity implements AppBarLayout.
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
             case R.id.action_locate:
                 Uri gmmIntentUri = Uri.parse("geo:12.968575,77.607172");
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
@@ -116,5 +125,17 @@ public class CoordinateParlax extends AppCompatActivity implements AppBarLayout.
             toolbarHeaderView.setVisibility(View.GONE);
             isHideToolbarView = !isHideToolbarView;
         }
+    }
+
+    @OnClick({R.id.CHECK_AVAILABILITY})
+    public void onClick(View v) {
+        Intent lObjInt;
+        switch (v.getId()){
+            case R.id.CHECK_AVAILABILITY:
+                lObjInt = new Intent(this, SlotAvailCalendar.class);
+                startActivity(lObjInt);
+                break;
+        }
+
     }
 }

@@ -1,20 +1,25 @@
 package com.pissay.chatra;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
-import com.bumptech.glide.Glide;
 import com.pissay.chatra.utils.ToolBarHeaderView;
 
 import butterknife.BindView;
@@ -28,7 +33,7 @@ public class CoordinateParlax extends AppCompatActivity implements AppBarLayout.
 
     @Nullable
     @BindView(R.id.backdrop)
-    ImageView iv_backdrop;
+    ViewPager vp_backdrop;
 
     @Nullable
     @BindView(R.id.CHECK_AVAILABILITY)
@@ -54,7 +59,18 @@ public class CoordinateParlax extends AppCompatActivity implements AppBarLayout.
     @BindView(R.id.float_header_view)
     ToolBarHeaderView floatHeaderView;
 
+    public CustomPagerAdapter mCustomPagerAdapter;
+
     private boolean isHideToolbarView = false;
+
+    int[] mResources = {
+            R.drawable.banquet,
+            R.drawable.sample1,
+            R.drawable.sample2,
+            R.drawable.sample3,
+            R.drawable.banquet,
+            R.drawable.sample1
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +94,10 @@ public class CoordinateParlax extends AppCompatActivity implements AppBarLayout.
         getSupportActionBar().setSubtitle("Church street, Bangalore");*/
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Glide.with(this).load(R.drawable.sample2).centerCrop().into(iv_backdrop);
+        mCustomPagerAdapter = new CustomPagerAdapter(this);
+        vp_backdrop.setAdapter(mCustomPagerAdapter);
+
+//        Glide.with(this).load(R.drawable.sample2).centerCrop().into(vp_backdrop);
 
     }
 
@@ -99,7 +118,7 @@ public class CoordinateParlax extends AppCompatActivity implements AppBarLayout.
                 onBackPressed();
                 return true;
             case R.id.action_locate:
-                Uri gmmIntentUri = Uri.parse("geo:12.968575,77.607172");
+                Uri gmmIntentUri = Uri.parse("geo:12.968575,77.607172?q="+getResources().getString(R.string.bkh_hall)+"@12.968575,77.607172");
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
                 startActivity(mapIntent);
@@ -138,4 +157,43 @@ public class CoordinateParlax extends AppCompatActivity implements AppBarLayout.
         }
 
     }
+
+    class CustomPagerAdapter extends PagerAdapter {
+
+        Context mContext;
+        LayoutInflater mLayoutInflater;
+
+        public CustomPagerAdapter(Context context) {
+            mContext = context;
+            mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        @Override
+        public int getCount() {
+            return mResources.length;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == ((LinearLayout) object);
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            View itemView = mLayoutInflater.inflate(R.layout.pager_item, container, false);
+
+            ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
+            imageView.setImageResource(mResources[position]);
+
+            container.addView(itemView);
+
+            return itemView;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView((LinearLayout) object);
+        }
+    }
+
 }

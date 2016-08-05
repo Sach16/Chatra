@@ -9,4 +9,8 @@
     <color name="grey_500">#9e9e9e</color>
     <color name="grey_700">#616161</color>
     <color name="grey_600">#757575</color>
+
+    <color name="cement">#ecf0f1</color>
+    <color name="ltgrey">#c6c6c6</color>
+    <color name="trans_ltgrey">#b7000000</color>
 </resources>

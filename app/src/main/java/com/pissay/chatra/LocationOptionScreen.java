@@ -1,5 +1,6 @@
 package com.pissay.chatra;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
@@ -14,9 +15,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -25,6 +30,9 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+
+import java.util.ArrayList;
+import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,18 +43,6 @@ import butterknife.Optional;
  * Created by S.K. Pissay on 14/7/16.
  */
 public class LocationOptionScreen extends AppCompatActivity implements View.OnClickListener {
-
-    private static final String TAG = "FragmentActivity";
-    private static final int SLEEP = 1232;
-
-    private static final String CLICKED = "CLICKED";
-    private static final String UNCLICKED = "UNCLICKED";
-
-    public UIHandler m_cObjUIHandler;
-    /**
-     * The Place autocomplete request code.
-     */
-    int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
 
     @Nullable
     @BindView(R.id.LL_SEARCH)
@@ -88,8 +84,35 @@ public class LocationOptionScreen extends AppCompatActivity implements View.OnCl
     @BindView(R.id.FAB_GO_SEARCH)
     FloatingActionButton mIvFab;
 
+    @Nullable
+    @BindView(R.id.TV_CHECKIN_DATE)
+    TextView mCheckinDateTv;
+
+    @Nullable
+    @BindView(R.id.SP_TIMESLOT)
+    Spinner mSpTimeSlot;
+
+    private Calendar m_cCalendar;
+    private DatePickerDialog m_cDatePickerDialog;
+    public static final int DATE_PICKER_ID = 102;
+
+    private static final String TAG = "FragmentActivity";
+    private static final int SLEEP = 1232;
+
+    private static final String CLICKED = "CLICKED";
+    private static final String UNCLICKED = "UNCLICKED";
+
+    public UIHandler m_cObjUIHandler;
+    private ArrayList<String> mTimeSlotList;
+
+    private ArrayAdapter mSpinAdapter;
+    /**
+     * The Place autocomplete request code.
+     */
+    int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.function_types3);
@@ -110,6 +133,13 @@ public class LocationOptionScreen extends AppCompatActivity implements View.OnCl
     @Override
     protected void onResume() {
         super.onResume();
+        mTimeSlotList = new ArrayList<>();
+        mTimeSlotList.add("Full Day");
+        mTimeSlotList.add("Morning Session - Lunch");
+        mTimeSlotList.add("Evening Session - Dinner");
+        mSpinAdapter = new ArrayAdapter(this, R.layout.spinner_text_lay,  mTimeSlotList);
+        mSpTimeSlot.setAdapter(mSpinAdapter);
+
         mIvWedding.setTag(R.id.CLICK, UNCLICKED);
         mIvBirthday.setTag(R.id.CLICK, UNCLICKED);
         mIvEngagement.setTag(R.id.CLICK, UNCLICKED);
@@ -161,13 +191,13 @@ public class LocationOptionScreen extends AppCompatActivity implements View.OnCl
 
     @Optional
     @OnClick({R.id.CV_BIRTHDAY, R.id.FAB_GO_SEARCH, R.id.IV_WEDDING, R.id.IV_BIRTHDAY, R.id.IV_ENGAGEMENT, R.id.IV_NAMING,
-            R.id.IV_CORPORATE, R.id.IV_PARTIES})
+            R.id.IV_CORPORATE, R.id.IV_PARTIES, R.id.TV_CHECKIN_DATE})
     public void onClick(View v) {
         Intent lIntent;
         switch (v.getId()) {
-            /*case R.id.ITEM_CARDVIEW:
-                placeAuto();
-                break;*/
+            case R.id.TV_CHECKIN_DATE:
+                showDatePickerDialog(DATE_PICKER_ID);
+                break;
             case R.id.CV_BIRTHDAY:
                 lIntent = new Intent(this, CoordinateParlax.class);
                 startActivity(lIntent);
@@ -320,4 +350,26 @@ public class LocationOptionScreen extends AppCompatActivity implements View.OnCl
             handleUIMessage(pObjMessage);
         }
     }
+
+    private void showDatePickerDialog(int pId) {
+        m_cCalendar = Calendar.getInstance();
+        switch (pId) {
+            case DATE_PICKER_ID:
+                m_cDatePickerDialog = new DatePickerDialog(this, myBankDateListener, m_cCalendar.get(Calendar.YEAR),
+                        m_cCalendar.get(Calendar.MONTH), m_cCalendar.get(Calendar.DAY_OF_MONTH));
+                m_cDatePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                break;
+        }
+        m_cDatePickerDialog.show();
+    }
+
+    private DatePickerDialog.OnDateSetListener myBankDateListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker arg0, int year, int month, int day) {
+            String lmonth = String.format("%02d", month + 1);
+            String lday = String.format("%02d", day);
+            mCheckinDateTv.setText(lday + "-" + lmonth + "-" + year);
+            m_cDatePickerDialog.dismiss();
+        }
+    };
 }

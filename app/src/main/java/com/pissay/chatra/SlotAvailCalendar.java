@@ -45,14 +45,13 @@ public class SlotAvailCalendar extends AppCompatActivity implements SlotSelectLi
     ArrayList<Integer> m_cPreviousPos;
     private Calendar mCalendar;
 
-    private LinearLayout m_cSwipeLay;
     private TextView currentMonth;
     private ImageView prevMonth;
     private ImageView nextMonth;
     private GridView calendarView;
     private GridCellAdapter adapter;
     private Calendar m_cObjCalendar;
-    private HashMap<String, String> m_cAbsents;
+    private HashMap<String, String> m_cBooked;
 
     private final int[] m_cDaysOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
@@ -130,9 +129,9 @@ public class SlotAvailCalendar extends AppCompatActivity implements SlotSelectLi
         m_cObjCalendar = Calendar.getInstance(Locale.getDefault());
         m_cMonth = m_cObjCalendar.get(Calendar.MONTH);
         m_cYear = m_cObjCalendar.get(Calendar.YEAR);
-        m_cAbsents = new HashMap<>();
-        m_cAbsents.put("2016-04-14", "2016-04-14");
-        m_cAbsents.put("2016-04-20", "2016-04-20");
+        m_cBooked = new HashMap<>();
+        m_cBooked.put("2016-08-19", "2016-08-19");
+        m_cBooked.put("2016-08-20", "2016-08-20");
         init();
         initlizationCalender();
     }
@@ -174,8 +173,6 @@ public class SlotAvailCalendar extends AppCompatActivity implements SlotSelectLi
 
     private void init() {
         //Initialize CustomCalendarView from layout
-        m_cSwipeLay = (LinearLayout) findViewById(R.id.ATENDANCE_LAY);
-        m_cSwipeLay.setOnClickListener(this);
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         m_cSelectedDate = df.format(new Date());
         /*m_cMrngGridSlots = (GridView) findViewById(R.id.MORNING_GRID_SLOTS);
@@ -439,7 +436,7 @@ public class SlotAvailCalendar extends AppCompatActivity implements SlotSelectLi
 
         private int m_cDaysInMonth;
         //		private int m_cSelectedDay;
-        private TextView m_cGridText;
+        private Button m_cGridText;
         private RelativeLayout m_cGridCell;
         private final SimpleDateFormat m_cDateFormatter = new SimpleDateFormat("dd-MMM-yyyy");
 
@@ -476,11 +473,12 @@ public class SlotAvailCalendar extends AppCompatActivity implements SlotSelectLi
             row = inflater.inflate(R.layout.calendar_gridcell, parent, false);
 
             // Get a reference to the Day gridcell
-            m_cGridText = (TextView) row.findViewById(R.id.CALENDAR_DAY_GRIDTEXT);
-            m_cGridCell = (RelativeLayout) row.findViewById(R.id.CALENDAR_DAY_GRIDCELL);
+            m_cGridText = (Button) row.findViewById(R.id.CALENDAR_DAY_GRIDCELL);
+//            m_cGridCell = (RelativeLayout) row.findViewById(R.id.CALENDAR_DAY_GRIDCELL);
 //			LayoutParams lParams = new LayoutParams(lwidth, lwidth);
 //			m_cGridText.setLayoutParams(lParams);
-            m_cGridCell.setOnClickListener(this);
+            m_cGridText.setOnClickListener(this);
+//            m_cGridCell.setOnClickListener(this);
 
             // ACCOUNT FOR SPACING
 
@@ -495,10 +493,11 @@ public class SlotAvailCalendar extends AppCompatActivity implements SlotSelectLi
             m_cGridText.setText(day[0]);
             String lDate = m_cObjList.get(position).m_cDate;
             m_cGridText.setTag(lEachDay);
-            m_cGridCell.setTag(lEachDay);
+//            m_cGridCell.setTag(lEachDay);
 
             if (lEachDay.m_cColor.equals("GREY")) {
-                m_cGridText.setTextColor(Color.LTGRAY);
+                m_cGridText.setTextColor(Color.WHITE);
+                m_cGridText.setBackground(getResources().getDrawable(R.drawable.calen_btn_grey));
 //                m_cGridText.setEnabled(false);
 //                m_cGridText.setClickable(false);
 //                m_cGridText.setFocusable(false);
@@ -519,18 +518,19 @@ public class SlotAvailCalendar extends AppCompatActivity implements SlotSelectLi
 
             if (lEachDay.m_cColor.equals("WHITE")) {
                 m_cGridText.setTextColor(Color.BLACK);
-                m_cGridText.setBackgroundColor(Color.WHITE);
+                m_cGridText.setBackground(getResources().getDrawable(R.drawable.calen_btn_cement));
             }
             if (lEachDay.m_cColor.equals("BLUE")) {
                 m_cGridText.setTextColor(Color.parseColor("#05CFB5"));
+                m_cGridText.setBackground(getResources().getDrawable(R.drawable.calen_btn_cement));
             }
             if (lEachDay.m_cColor.equals("YELLOW")) {
-                m_cGridText.setTextColor(Color.RED);
-                m_cGridText.setBackgroundColor(Color.WHITE);
+                m_cGridText.setTextColor(Color.WHITE);
+                m_cGridText.setBackground(getResources().getDrawable(R.drawable.calen_btn_red));
             }
             if (lEachDay.m_cColor.equals("RED")) {
-                m_cGridText.setTextColor(Color.BLACK);
-                m_cGridText.setBackgroundColor(Color.RED);
+                m_cGridText.setTextColor(Color.WHITE);
+                m_cGridText.setBackground(getResources().getDrawable(R.drawable.calen_btn_red));
             }
 
             return row;
@@ -548,35 +548,24 @@ public class SlotAvailCalendar extends AppCompatActivity implements SlotSelectLi
         @Override
         public void onClick(View v) {
             EachDate lTag = (EachDate) v.getTag();
-            if (lTag.m_cColor.equals("YELLOW")) {
+            if (lTag.m_cColor.equals("WHITE")) {
                 m_cSelectedDate = lTag.m_cFormatDate;
 
                 if (null != m_cSelectedView) {
                     EachDate lEachDay = (EachDate) m_cSelectedView.getTag();
-                    if (lEachDay.m_cColor.equals("GREY")) {
-                        m_cSelectedView.setTextColor(Color.LTGRAY);
-                        /*m_cSelectedView.setEnabled(false);
-                        m_cSelectedView.setClickable(false);
-                        m_cSelectedView.setFocusable(false);
-                        m_cSelectedView.setFocusableInTouchMode(false);*/
-                    }
                     if (lEachDay.m_cColor.equals("WHITE")) {
-                        m_cSelectedView.setTextColor(Color.LTGRAY);
-                    }
-                    if (lEachDay.m_cColor.equals("BLUE")) {
-                        m_cSelectedView.setTextColor(Color.LTGRAY);
-                    }
-                    if (lEachDay.m_cColor.equals("YELLOW")) {
                         m_cSelectedView.setTextColor(Color.BLACK);
+                        m_cSelectedView.setBackground(getResources().getDrawable(R.drawable.calen_btn_cement));
                     }
                 }
                 m_cSelectedView = (Button) v;
                 m_cSelectedView.setTextColor(Color.WHITE);
-//                m_cMrngGridSlots.setVisibility(View.VISIBLE);
+                m_cSelectedView.setBackground(getResources().getDrawable(R.drawable.calen_btn_green));
                 updateUIbyDate();
             } else {
-                int xOffset = Integer.parseInt(((TextView) v).getText().toString());
-                int yOffset = Integer.parseInt(((TextView) v).getText().toString());
+                //TODO uncomment below 2 lines
+//                int xOffset = Integer.parseInt(((TextView) v).getText().toString());
+//                int yOffset = Integer.parseInt(((TextView) v).getText().toString());
 //                EURemediesMacros.showCustomAlert(m_cContext, xOffset, yOffset);
 //                Toast.makeText(m_cContext, "Appointment not available..", Toast.LENGTH_SHORT).show();
             }
@@ -675,11 +664,13 @@ public class SlotAvailCalendar extends AppCompatActivity implements SlotSelectLi
                 lDay.m_cDate = lDate;
                 if (i == m_cToday_Date && m_cMonth_Now == m_cMonth && m_cYear_Now == m_cYear) {
                     lDay.m_cColor = "BLUE";
+                } else if (i < m_cToday_Date && m_cMonth_Now == m_cMonth && m_cYear_Now == m_cYear) {
+                    lDay.m_cColor = "GREY";
                 } else {
                     lDay.m_cColor = "WHITE";
                 }
 
-                if (null != m_cAbsents && m_cAbsents.containsKey(lDay.m_cFormatDate)) {
+                if (null != m_cBooked && m_cBooked.containsKey(lDay.m_cFormatDate)) {
                     lDay.m_cColor = "YELLOW";
                 }
                 m_cObjList.add(lDay);

@@ -20,7 +20,7 @@
     <string name="corporate_events">Corporate Events</string>
     <string name="engagements">Engagements</string>
 
-    <string name="reserve_now">Reserve Now</string>
+    <string name="reserve_now">Reserve Now/Pay at Venue</string>
     <string name="check_availability">Check Availability</string>
 
     <string name="venue_halls">Venue Halls</string>
@@ -32,6 +32,9 @@
 
     <string name="sel_time_slot">Select Slot</string>
     <string name="sel_date">Select Date</string>
+
+    <string name="search_place">Search place</string>
+    <string name="bkh_hall">BKH Hall</string>
 
     <item type="id" name="CLICK"/>
 

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -30,10 +32,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Optional;
+
 /**
  * Created by S.K. Pissay on 12/3/2015.
  */
 public class SlotAvailCalendar extends AppCompatActivity implements SlotSelectListner, View.OnClickListener, View.OnTouchListener {
+
+    @Nullable
+    @BindView(R.id.FAB_BOOK_RESERVE)
+    FloatingActionButton fab_BookReserve;
 
     private static final String tag = "MyCalendarActivity";
 
@@ -103,6 +114,8 @@ public class SlotAvailCalendar extends AppCompatActivity implements SlotSelectLi
     protected void onCreate(Bundle pSavedInstance) {
         super.onCreate(pSavedInstance);
         setContentView(R.layout.calendar_screen);
+        ButterKnife.bind(this);
+
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -255,7 +268,8 @@ public class SlotAvailCalendar extends AppCompatActivity implements SlotSelectLi
         super.onDestroy();
     }
 
-    @Override
+    @Optional
+    @OnClick({R.id.FAB_BOOK_RESERVE})
     public void onClick(View v) {
         Intent lIntent;
         String[] lSelectedDate;
@@ -293,6 +307,10 @@ public class SlotAvailCalendar extends AppCompatActivity implements SlotSelectLi
 //                m_cMrngGridSlots.setVisibility(View.GONE);
                 break;
             case R.id.currentMonth:
+                break;
+            case R.id.FAB_BOOK_RESERVE:
+                lIntent = new Intent(this, BookReserveNow.class);
+                startActivity(lIntent);
                 break;
         }
     }
@@ -634,7 +652,7 @@ public class SlotAvailCalendar extends AppCompatActivity implements SlotSelectLi
                 lDay.m_cColor = "GREY";
                 m_cObjList.add(lDay);
                 /*m_cObjList.add(String.valueOf((lDaysInPrevMonth
-						- lTrailingSpaces + DAY_OFFSET)
+                        - lTrailingSpaces + DAY_OFFSET)
 						+ i)
 						+ "-GREY"
 						+ "-"

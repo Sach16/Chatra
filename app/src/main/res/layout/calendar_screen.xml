@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <include
         android:id="@+id/REGD_TITLE_BAR"
@@ -12,17 +13,53 @@
 
     <GridView
         android:id="@+id/calendar"
-        android:layout_below="@+id/REGD_TITLE_BAR"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/LY_GUIDE"
+        android:layout_below="@+id/REGD_TITLE_BAR"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:gravity="center"
-        android:columnWidth="20dp"
-        android:stretchMode="columnWidth"
-        android:background="@android:color/white"
         android:adjustViewBounds="true"
-        android:numColumns="7"/>
+        android:background="@android:color/white"
+        android:columnWidth="20dp"
+        android:gravity="center"
+        android:numColumns="7"
+        android:overScrollMode="never"
+        android:stretchMode="columnWidth" />
 
+    <LinearLayout
+        android:id="@+id/LY_GUIDE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/CALENDAR_DAY_GRIDCELL"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/calen_btn_red"></Button>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/reserved"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/FAB_BOOK_RESERVE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:clickable="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/go_play"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="bottom|right|end" />
 
 </RelativeLayout>

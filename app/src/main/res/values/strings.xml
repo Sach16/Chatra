@@ -36,6 +36,8 @@
     <string name="search_place">Search place</string>
     <string name="bkh_hall">BKH Hall</string>
 
+    <string name="reserved">\t: Reserved</string>
+
     <item type="id" name="CLICK"/>
 
 </resources>

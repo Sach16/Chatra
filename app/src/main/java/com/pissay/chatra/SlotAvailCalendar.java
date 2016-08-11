@@ -116,7 +116,7 @@ public class SlotAvailCalendar extends AppCompatActivity implements SlotSelectLi
         setContentView(R.layout.calendar_screen);
         ButterKnife.bind(this);
 
-
+        getSupportActionBar().setTitle("Check Your Slot");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Slider Initilization

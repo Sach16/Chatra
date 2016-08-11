@@ -162,6 +162,59 @@
                         android:layout_height="wrap_content"
                         android:text="@string/menu_and_pack_details" />
 
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.v7.widget.CardView style="@style/menu_card_img_cell">
+
+                                <ImageView
+                                    style="@style/menu_item_img"
+                                    android:src="@drawable/menu6" />
+
+                            </android.support.v7.widget.CardView>
+
+                            <android.support.v7.widget.CardView style="@style/menu_card_img_cell">
+
+                                <ImageView
+                                    style="@style/menu_item_img"
+                                    android:src="@drawable/menu_5" />
+
+                            </android.support.v7.widget.CardView>
+
+                            <android.support.v7.widget.CardView style="@style/menu_card_img_cell">
+
+                                <ImageView
+                                    style="@style/menu_item_img"
+                                    android:src="@drawable/menu6" />
+
+                            </android.support.v7.widget.CardView>
+
+                            <android.support.v7.widget.CardView style="@style/menu_card_img_cell">
+
+                                <ImageView
+                                    style="@style/menu_item_img"
+                                    android:src="@drawable/menu_5" />
+
+                            </android.support.v7.widget.CardView>
+
+                            <android.support.v7.widget.CardView style="@style/menu_card_img_cell">
+
+                                <ImageView
+                                    style="@style/menu_item_img"
+                                    android:src="@drawable/menu_2" />
+
+                            </android.support.v7.widget.CardView>
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
@@ -330,25 +383,24 @@
 
                 <Button
                     android:id="@+id/BT_COST_PER"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/colorAccent"
-                    android:text="@string/reserve_now"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp" />
+                    style="@style/down_button_cor"
+                    android:gravity="left|center"
+                    android:paddingLeft="@dimen/card_margin"
+                    android:text="@string/cost_per_plate" />
+
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/ltgrey" />
 
                 <Button
                     android:id="@+id/BT_RESERVE_BOOK"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/colorAccent"
-                    android:text="@string/reserve_now"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp" />
+                    style="@style/down_button_cor"
+                    android:gravity="right|center"
+                    android:paddingRight="@dimen/card_margin"
+                    android:text="@string/reserve_now" />
 
             </LinearLayout>
 

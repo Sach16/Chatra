@@ -41,7 +41,7 @@
     <style name="search_card_cell">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_margin">@dimen/card_margin_for_image</item>
     </style>
 
     <style name="load_more_card_cell">
@@ -50,9 +50,21 @@
         <item name="android:layout_margin">5dp</item>
     </style>
 
+    <style name="menu_card_img_cell">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:layout_margin">@dimen/card_margin_for_image</item>
+    </style>
+
     <style name="load_more_img">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">150dp</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="menu_item_img">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:scaleType">centerCrop</item>
     </style>
 
@@ -80,5 +92,26 @@
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textSize">12sp</item>
     </style>
+
+    <style name="down_button_cor">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+
+    <style name="down_button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
 
 </resources>

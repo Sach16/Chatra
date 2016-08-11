@@ -25,6 +25,7 @@ import com.pissay.chatra.utils.ToolBarHeaderView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Optional;
 
 /**
  * Created by S.K. Pissay on 9/7/16.
@@ -36,8 +37,12 @@ public class CoordinateParlax extends AppCompatActivity implements AppBarLayout.
     ViewPager vp_backdrop;
 
     @Nullable
-    @BindView(R.id.CHECK_AVAILABILITY)
-    Button bn_checkAvail;
+    @BindView(R.id.BT_COST_PER)
+    Button bn_CostPer;
+
+    @Nullable
+    @BindView(R.id.BT_RESERVE_BOOK)
+    Button bn_ResBook;
 
     @Nullable
     @BindView(R.id.appbar)
@@ -146,16 +151,17 @@ public class CoordinateParlax extends AppCompatActivity implements AppBarLayout.
         }
     }
 
-    @OnClick({R.id.CHECK_AVAILABILITY})
+    @Optional
+    @OnClick({R.id.BT_COST_PER, R.id.BT_RESERVE_BOOK})
     public void onClick(View v) {
         Intent lObjInt;
         switch (v.getId()){
-            case R.id.CHECK_AVAILABILITY:
+            case R.id.BT_COST_PER:
+            case R.id.BT_RESERVE_BOOK:
                 lObjInt = new Intent(this, SlotAvailCalendar.class);
                 startActivity(lObjInt);
                 break;
         }
-
     }
 
     class CustomPagerAdapter extends PagerAdapter {

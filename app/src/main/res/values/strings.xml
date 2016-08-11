@@ -20,7 +20,9 @@
     <string name="corporate_events">Corporate Events</string>
     <string name="engagements">Engagements</string>
 
-    <string name="reserve_now">Reserve Now/Pay at Venue</string>
+    <string name="cost_per_plate">500 per plate</string>
+    <string name="reserve_now">Reserve Now</string>
+    <string name="reserve">Reserve</string>
     <string name="check_availability">Check Availability</string>
 
     <string name="venue_halls">Venue Halls</string>
@@ -37,6 +39,7 @@
     <string name="bkh_hall">BKH Hall</string>
 
     <string name="reserved">\t: Reserved</string>
+    <string name="review_bookings">Review Booking</string>
 
     <item type="id" name="CLICK"/>
 

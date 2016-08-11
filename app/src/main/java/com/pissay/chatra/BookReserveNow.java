@@ -2,20 +2,38 @@ package com.pissay.chatra;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by S.K. Pissay on 8/8/16.
  */
-public class BookReserveNow extends AppCompatActivity {
+public class BookReserveNow extends AppCompatActivity implements View.OnClickListener{
+
+    @Nullable
+    @BindView(R.id.REL_LAY_GRP)
+    RelativeLayout rl_LayGrp;
+
+    @Nullable
+    @BindView(R.id.BT_RESERVE_BOOK)
+    Button ll_finalBut;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_reserve_now);
+        ButterKnife.bind(this);
 
+        getSupportActionBar().setTitle(getResources().getString(R.string.review_bookings));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -52,5 +70,14 @@ public class BookReserveNow extends AppCompatActivity {
         lregister.setVisible(false);
         return true;
 
+    }
+
+    @OnClick({R.id.BT_RESERVE_BOOK})
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.BT_RESERVE_BOOK:
+                Snackbar.make(rl_LayGrp, "Thankyou have a wonderful eve", Snackbar.LENGTH_SHORT).show();
+                break;
+        }
     }
 }

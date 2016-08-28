@@ -21,6 +21,7 @@
     <string name="engagements">Engagements</string>
 
     <string name="cost_per_plate">500 per plate</string>
+    <string name="alert_gps_not_enabled">GPS is not enabled. Do you want to go to settings menu?</string>
     <string name="reserve_now">Reserve Now</string>
     <string name="reserve">Reserve</string>
     <string name="check_availability">Check Availability</string>

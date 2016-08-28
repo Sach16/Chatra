@@ -1,4 +1,4 @@
-package com.pissay.chatra;
+package com.pissay.chatra.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.pissay.chatra.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

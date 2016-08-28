@@ -1,4 +1,4 @@
-package com.pissay.chatra;
+package com.pissay.chatra.activities;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -30,6 +30,7 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.pissay.chatra.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;

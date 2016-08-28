@@ -1,33 +1,41 @@
-package com.pissay.chatra;
+package com.pissay.chatra.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+
+import com.pissay.chatra.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Created by S.K. Pissay on 11/7/16.
+ * Created by S.K. Pissay on 8/8/16.
  */
-public class HallsList extends AppCompatActivity implements View.OnClickListener{
+public class BookReserveNow extends AppCompatActivity implements View.OnClickListener{
 
     @Nullable
-    @BindView(R.id.CV_BANQ_CELL)
-    CardView mcvBanqCell;
+    @BindView(R.id.REL_LAY_GRP)
+    RelativeLayout rl_LayGrp;
+
+    @Nullable
+    @BindView(R.id.BT_RESERVE_BOOK)
+    Button ll_finalBut;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_card_cell);
+        setContentView(R.layout.book_reserve_now);
         ButterKnife.bind(this);
 
+        getSupportActionBar().setTitle(getResources().getString(R.string.review_bookings));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -36,6 +44,7 @@ public class HallsList extends AppCompatActivity implements View.OnClickListener
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+
     }
 
     @Override
@@ -47,13 +56,12 @@ public class HallsList extends AppCompatActivity implements View.OnClickListener
             case android.R.id.home:
                 onBackPressed();
                 return true;
-            case R.id.action_locate:
-                return true;
             case R.id.action_settings:
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+
     }
 
     @Override
@@ -63,14 +71,14 @@ public class HallsList extends AppCompatActivity implements View.OnClickListener
         MenuItem lregister = menu.findItem(R.id.action_settings);
         lregister.setVisible(false);
         return true;
+
     }
 
-    @OnClick({R.id.CV_BANQ_CELL})
+    @OnClick({R.id.BT_RESERVE_BOOK})
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.CV_BANQ_CELL:
-                Intent lIntent = new Intent(this, CoordinateParlax.class);
-                startActivity(lIntent);
+            case R.id.BT_RESERVE_BOOK:
+                Snackbar.make(rl_LayGrp, "Thankyou have a wonderful eve", Snackbar.LENGTH_SHORT).show();
                 break;
         }
     }

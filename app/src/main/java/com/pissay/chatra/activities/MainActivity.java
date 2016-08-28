@@ -1,4 +1,4 @@
-package com.pissay.chatra;
+package com.pissay.chatra.activities;
 
 import android.content.Intent;
 import android.graphics.drawable.StateListDrawable;
@@ -28,6 +28,7 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.pissay.chatra.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

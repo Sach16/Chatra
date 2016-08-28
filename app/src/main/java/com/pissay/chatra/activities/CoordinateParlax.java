@@ -1,4 +1,4 @@
-package com.pissay.chatra;
+package com.pissay.chatra.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.pissay.chatra.R;
+import com.pissay.chatra.activities.SlotAvailCalendar;
 import com.pissay.chatra.utils.ToolBarHeaderView;
 
 import butterknife.BindView;

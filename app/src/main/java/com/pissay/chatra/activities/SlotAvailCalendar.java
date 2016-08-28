@@ -1,4 +1,4 @@
-package com.pissay.chatra;
+package com.pissay.chatra.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -22,6 +22,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.pissay.chatra.R;
+import com.pissay.chatra.interfaces.SlotSelectListner;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

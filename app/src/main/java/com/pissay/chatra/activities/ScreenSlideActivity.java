@@ -1,4 +1,4 @@
-package com.pissay.chatra;
+package com.pissay.chatra.activities;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -18,6 +18,12 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
+
+import com.pissay.chatra.R;
+import com.pissay.chatra.fragments.ScreenSlidePageFragment;
+import com.pissay.chatra.fragments.ScreenSlidePageFragment2;
+import com.pissay.chatra.fragments.ScreenSlidePageFragment3;
+import com.pissay.chatra.fragments.ScreenSlidePageFragment4;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

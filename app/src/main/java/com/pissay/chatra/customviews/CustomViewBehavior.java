@@ -1,4 +1,4 @@
-package com.pissay.chatra;
+package com.pissay.chatra.customviews;
 
 import android.content.Context;
 import android.os.Build;
@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 
+import com.pissay.chatra.R;
 import com.pissay.chatra.utils.ToolBarHeaderView;
 
 /**

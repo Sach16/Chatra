@@ -118,6 +118,8 @@ public class EveMacros {
     public static final String CANCELLED_STATUS = "Cancelled";
     public static final String OVERDUE_STATUS = "Overdue";
 
+    public static final String SINGLE_EVENT = "single_event";
+
     public static final int ABSENT = 0;
     public static final int PRESENT = 1;
     public static final int TODAY = 2;

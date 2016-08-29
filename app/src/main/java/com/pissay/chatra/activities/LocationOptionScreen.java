@@ -238,10 +238,10 @@ public class LocationOptionScreen extends AppCompatActivity implements View.OnCl
             case R.id.IV_NAMING:
                 if (((String) mIvNaming.getTag(R.id.CLICK)).equalsIgnoreCase(CLICKED)) {
                     mIvNaming.setTag(R.id.CLICK, UNCLICKED);
-                    mIvNaming.setBackground(makeSelector(mIvCorporate.getId(), false));
+                    mIvNaming.setBackground(makeSelector(mIvNaming.getId(), false));
                 } else {
                     mIvNaming.setTag(R.id.CLICK, CLICKED);
-                    mIvNaming.setBackground(makeSelector(mIvCorporate.getId(), true));
+                    mIvNaming.setBackground(makeSelector(mIvNaming.getId(), true));
                 }
                 break;
             case R.id.IV_CORPORATE:

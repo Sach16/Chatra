@@ -46,7 +46,7 @@ public class RequestManager<T> {
 
 //    public static final String LIVE_BASEFEED_URL = "http://stage.52.77.80.241.xip.io/api/v1/";
 //    public static final String LIVE_BASEFEED_URL = "http://moa.52.77.80.241.xip.io/api/v1/";
-    public static final String LIVE_BASEFEED_URL = "http://whatsloan.stunnerweb.in/api/v1/";
+    public static final String LIVE_BASEFEED_URL = "http://192.168.1.150:8080/";
 //    public static final String TEST_BASEFEED_URL = "http://52.77.80.241/api/v1/";
     public static final String TEST_BASEFEED_URL = "http://api.52.77.80.241.xip.io/api/v1/";
 
@@ -134,11 +134,11 @@ public class RequestManager<T> {
 //            jsObjRequest.setHeaders(headers);
 //        }
 
-        if (null != EveMacros.getLoginAuth(mCtx)) {
+        /*if (null != EveMacros.getLoginAuth(mCtx)) {
             HashMap<String, String> headers = new HashMap<String, String>();
             headers.put(Constants.AUTHORIZATION, "Bearer " + EveMacros.getLoginAuth(mCtx));
             jsObjRequest.setHeaders(headers);
-        }
+        }*/
 
 //        jsObjRequest.setTag("ZM");
         int socketTimeout = 30000;//30 seconds

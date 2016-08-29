@@ -1,4 +1,4 @@
-package com.pissay.chatra;
+package com.pissay.chatra.customviews;
 
 import android.content.Context;
 import android.util.AttributeSet;

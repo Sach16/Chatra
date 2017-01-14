@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -30,7 +31,9 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.google.android.gms.maps.model.LatLng;
 import com.pissay.chatra.R;
+import com.pissay.chatra.macros.EveMacros;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -43,7 +46,7 @@ import butterknife.Optional;
 /**
  * Created by S.K. Pissay on 14/7/16.
  */
-public class LocationOptionScreen extends AppCompatActivity implements View.OnClickListener {
+public class LocationOptionScreen extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     @Nullable
     @BindView(R.id.LL_SEARCH)
@@ -107,6 +110,8 @@ public class LocationOptionScreen extends AppCompatActivity implements View.OnCl
     private ArrayList<String> mTimeSlotList;
 
     private ArrayAdapter mSpinAdapter;
+    private int m_cSessPos;
+    private LatLng m_cLatLng;
     /**
      * The Place autocomplete request code.
      */
@@ -134,11 +139,12 @@ public class LocationOptionScreen extends AppCompatActivity implements View.OnCl
     @Override
     protected void onResume() {
         super.onResume();
+        mSpTimeSlot.setOnItemClickListener(this);
         mTimeSlotList = new ArrayList<>();
         mTimeSlotList.add("Full Day");
         mTimeSlotList.add("Morning Session - Lunch");
         mTimeSlotList.add("Evening Session - Dinner");
-        mSpinAdapter = new ArrayAdapter(this, R.layout.spinner_text_lay,  mTimeSlotList);
+        mSpinAdapter = new ArrayAdapter(this, R.layout.spinner_text_lay, mTimeSlotList);
         mSpTimeSlot.setAdapter(mSpinAdapter);
 
         mIvWedding.setTag(R.id.CLICK, UNCLICKED);
@@ -155,6 +161,7 @@ public class LocationOptionScreen extends AppCompatActivity implements View.OnCl
             if (resultCode == RESULT_OK) {
                 Place place = PlaceAutocomplete.getPlace(this, data);
                 Log.i(TAG, "Place: " + place.getName());
+                m_cLatLng = place.getLatLng();
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
                 Status status = PlaceAutocomplete.getStatus(this, data);
                 // TODO: Handle the error.
@@ -205,6 +212,24 @@ public class LocationOptionScreen extends AppCompatActivity implements View.OnCl
                 break;
             case R.id.FAB_GO_SEARCH:
                 lIntent = new Intent(this, HallsList.class);
+                if (m_cSessPos > -1)
+                    lIntent.putExtra(EveMacros.FILTER_SESSION, mTimeSlotList.get(m_cSessPos));
+                if (!mCheckinDateTv.getText().toString().isEmpty())
+                    lIntent.putExtra(EveMacros.FILTER_DATE, mCheckinDateTv.getText().toString());
+                if (m_cLatLng != null)
+                    lIntent.putExtra(EveMacros.FILTER_PLACE, new Double[]{m_cLatLng.latitude, m_cLatLng.longitude});
+                if (((String) mIvWedding.getTag(R.id.CLICK)).equalsIgnoreCase(CLICKED))
+                    lIntent.putExtra(EveMacros.TYPE_WEDDING, true);
+                if (((String) mIvBirthday.getTag(R.id.CLICK)).equalsIgnoreCase(CLICKED))
+                    lIntent.putExtra(EveMacros.TYPE_BIRTHDAY, true);
+                if (((String) mIvEngagement.getTag(R.id.CLICK)).equalsIgnoreCase(CLICKED))
+                    lIntent.putExtra(EveMacros.TYPE_ENGAGEMENT, true);
+                if (((String) mIvNaming.getTag(R.id.CLICK)).equalsIgnoreCase(CLICKED))
+                    lIntent.putExtra(EveMacros.TYPE_NAMING, true);
+                if (((String) mIvCorporate.getTag(R.id.CLICK)).equalsIgnoreCase(CLICKED))
+                    lIntent.putExtra(EveMacros.TYPE_CORPORATE, true);
+                if (((String) mIvParties.getTag(R.id.CLICK)).equalsIgnoreCase(CLICKED))
+                    lIntent.putExtra(EveMacros.TYPE_PARTY, true);
                 startActivity(lIntent);
                 break;
             //Image options
@@ -285,6 +310,7 @@ public class LocationOptionScreen extends AppCompatActivity implements View.OnCl
             public void onPlaceSelected(Place place) {
                 // TODO: Get info about the selected place.
                 Log.i(TAG, "Place: " + place.getName());
+                m_cLatLng = place.getLatLng();
             }
 
             @Override
@@ -343,6 +369,12 @@ public class LocationOptionScreen extends AppCompatActivity implements View.OnCl
         }
 //        res.addState(new int[]{}, new ColorDrawable(Color.TRANSPARENT));
         return res;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (position > -1)
+            m_cSessPos = position;
     }
 
     public final class UIHandler extends Handler {

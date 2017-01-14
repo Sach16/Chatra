@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/CV_BANQ_CELL"
+    style="@style/menu_card_img_cell">
+
+    <ImageView
+        android:id="@+id/MENU_IMG"
+        style="@style/menu_item_img" />
+
+</android.support.v7.widget.CardView>

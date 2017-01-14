@@ -162,58 +162,11 @@
                         android:layout_height="wrap_content"
                         android:text="@string/menu_and_pack_details" />
 
-                    <HorizontalScrollView
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/RECYC_MENU_LIST"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <android.support.v7.widget.CardView style="@style/menu_card_img_cell">
-
-                                <ImageView
-                                    style="@style/menu_item_img"
-                                    android:src="@drawable/menu6" />
-
-                            </android.support.v7.widget.CardView>
-
-                            <android.support.v7.widget.CardView style="@style/menu_card_img_cell">
-
-                                <ImageView
-                                    style="@style/menu_item_img"
-                                    android:src="@drawable/menu_5" />
-
-                            </android.support.v7.widget.CardView>
-
-                            <android.support.v7.widget.CardView style="@style/menu_card_img_cell">
-
-                                <ImageView
-                                    style="@style/menu_item_img"
-                                    android:src="@drawable/menu6" />
-
-                            </android.support.v7.widget.CardView>
-
-                            <android.support.v7.widget.CardView style="@style/menu_card_img_cell">
-
-                                <ImageView
-                                    style="@style/menu_item_img"
-                                    android:src="@drawable/menu_5" />
-
-                            </android.support.v7.widget.CardView>
-
-                            <android.support.v7.widget.CardView style="@style/menu_card_img_cell">
-
-                                <ImageView
-                                    style="@style/menu_item_img"
-                                    android:src="@drawable/menu_2" />
-
-                            </android.support.v7.widget.CardView>
-
-                        </LinearLayout>
-
-                    </HorizontalScrollView>
+                        android:layout_height="match_parent"
+                        android:scrollbars="horizontal"/>
 
                 </LinearLayout>
 
@@ -369,6 +322,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/card_margin"
+                android:paddingLeft="@dimen/card_margin"
+                android:paddingRight="@dimen/card_margin"
                 android:scrollbars="horizontal"/>
 
             <LinearLayout

@@ -29,6 +29,7 @@
                 android:src="@drawable/phone"/>
 
             <EditText
+                android:id="@+id/PHONE_TXT"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -63,6 +64,7 @@
                 android:src="@drawable/lock"/>
 
             <EditText
+                android:id="@+id/OTP_TXT"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"

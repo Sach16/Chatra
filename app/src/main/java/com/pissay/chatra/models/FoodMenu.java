@@ -3,8 +3,12 @@ package com.pissay.chatra.models;
 /**
  * Created by S.K. Pissay on 28/8/16.
  */
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FoodMenu {
 
@@ -20,78 +24,72 @@ public class FoodMenu {
     @SerializedName("name")
     @Expose
     private String name;
+    @SerializedName("attachments")
+    @Expose
+    private List<Attachments> attachments = new ArrayList<Attachments>();
 
     /**
-     *
-     * @return
-     * The id
+     * @return The id
      */
     public Object getId() {
         return id;
     }
 
     /**
-     *
-     * @param id
-     * The id
+     * @param id The id
      */
     public void setId(Object id) {
         this.id = id;
     }
 
     /**
-     *
-     * @return
-     * The cost
+     * @return The cost
      */
     public Integer getCost() {
         return cost;
     }
 
     /**
-     *
-     * @param cost
-     * The cost
+     * @param cost The cost
      */
     public void setCost(Integer cost) {
         this.cost = cost;
     }
 
     /**
-     *
-     * @return
-     * The cuisine
+     * @return The cuisine
      */
     public String getCuisine() {
         return cuisine;
     }
 
     /**
-     *
-     * @param cuisine
-     * The cuisine
+     * @param cuisine The cuisine
      */
     public void setCuisine(String cuisine) {
         this.cuisine = cuisine;
     }
 
     /**
-     *
-     * @return
-     * The name
+     * @return The name
      */
     public String getName() {
         return name;
     }
 
     /**
-     *
-     * @param name
-     * The name
+     * @param name The name
      */
     public void setName(String name) {
         this.name = name;
     }
 
+    public List<Attachments> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(List<Attachments> attachments) {
+        this.attachments = attachments;
+    }
 }
 

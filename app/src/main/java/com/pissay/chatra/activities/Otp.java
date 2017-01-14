@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -13,7 +12,15 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.VolleyError;
 import com.pissay.chatra.R;
+import com.pissay.chatra.baseclasses.EveBaseActivity;
+import com.pissay.chatra.macros.EveMacros;
+import com.pissay.chatra.models.User;
+import com.pissay.chatra.network.Constants;
+import com.pissay.chatra.network.RequestManager;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +30,7 @@ import butterknife.Optional;
 /**
  * Created by S.K. Pissay on 15/7/16.
  */
-public class Otp extends AppCompatActivity implements View.OnClickListener{
+public class Otp extends EveBaseActivity implements View.OnClickListener{
 
     private static final String TAG = "FragmentActivity";
 
@@ -33,6 +40,14 @@ public class Otp extends AppCompatActivity implements View.OnClickListener{
     @Nullable
     @BindView(R.id.SUBMIT)
     TextView mtv_Submit;
+
+    @Nullable
+    @BindView(R.id.PHONE_TXT)
+    TextView mtv_Phone;
+
+    @Nullable
+    @BindView(R.id.OTP_TXT)
+    TextView mtv_Otp;
 
     @Nullable
     @BindView(R.id.OTP_LAY)
@@ -53,8 +68,11 @@ public class Otp extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.SUBMIT:
-                Intent lIntent = new Intent(this, LocationOptionScreen.class);
-                startActivity(lIntent);
+                displayProgressBar(-1, getResources().getString(R.string.app_name));
+                HashMap<String, String> lParams = new HashMap<>();
+                lParams.put(Constants.PHONE, mtv_Phone.getText().toString());
+                lParams.put(Constants.OTP, mtv_Otp.getText().toString());
+                RequestManager.getInstance(this).placeRequest(Constants.LOGIN, User.class, this, lParams, false);
                 break;
         }
     }
@@ -96,5 +114,25 @@ public class Otp extends AppCompatActivity implements View.OnClickListener{
         public void handleMessage(Message pObjMessage) {
             handleUIMessage(pObjMessage);
         }
+    }
+
+    @Override
+    public void onAPIResponse(Object response, String apiMethod) {
+        switch (apiMethod){
+            case Constants.LOGIN:
+                if (EveMacros.getLoginAuth(this) == null) {
+                    User lUser = (User) response;
+                    EveMacros.saveLoginAuth(this, lUser.getToken());
+                }
+                Intent lIntent = new Intent(this, LocationOptionScreen.class);
+                startActivity(lIntent);
+                break;
+        }
+        hideDialog();
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error, String apiMethod) {
+        hideDialog();
     }
 }

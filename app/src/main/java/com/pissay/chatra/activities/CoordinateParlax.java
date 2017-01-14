@@ -28,7 +28,9 @@ import com.google.gson.Gson;
 import com.pissay.chatra.R;
 import com.pissay.chatra.baseclasses.EveBaseActivity;
 import com.pissay.chatra.customadapters.CustomRecyclerAdapterForListOfHallsHor;
+import com.pissay.chatra.customadapters.CustomRecyclerAdapterForListOfMenuItems;
 import com.pissay.chatra.interfaces.RecyclerHallsListener;
+import com.pissay.chatra.interfaces.RecyclerImagesListener;
 import com.pissay.chatra.macros.EveMacros;
 import com.pissay.chatra.models.Evnts;
 import com.pissay.chatra.network.Constants;
@@ -48,7 +50,7 @@ import butterknife.Optional;
 /**
  * Created by S.K. Pissay on 9/7/16.
  */
-public class CoordinateParlax extends EveBaseActivity implements AppBarLayout.OnOffsetChangedListener, View.OnClickListener, RecyclerHallsListener {
+public class CoordinateParlax extends EveBaseActivity implements AppBarLayout.OnOffsetChangedListener, View.OnClickListener, RecyclerHallsListener, RecyclerImagesListener {
 
     @Nullable
     @BindView(R.id.backdrop)
@@ -86,10 +88,15 @@ public class CoordinateParlax extends EveBaseActivity implements AppBarLayout.On
     @BindView(R.id.RECYC_HALLS_LIST_HOR)
     RecyclerView m_cRecycHallsHor;
 
+    @Nullable
+    @BindView(R.id.RECYC_MENU_LIST)
+    RecyclerView m_cRecycMenuHor;
+
     private boolean m_cLoading = true;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
     LinearLayoutManager m_cLayoutManager;
     CustomRecyclerAdapterForListOfHallsHor m_cRecycAdHalls;
+    CustomRecyclerAdapterForListOfMenuItems m_cRecycAdImgs;
     ArrayList<Evnts> m_cHallsList;
 
     private Evnts m_cEvnts;
@@ -168,6 +175,13 @@ public class CoordinateParlax extends EveBaseActivity implements AppBarLayout.On
             }
         });
 
+        m_cLayoutManager = new LinearLayoutManager(this);
+        m_cLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        m_cRecycMenuHor.setLayoutManager(m_cLayoutManager);
+
+        m_cRecycAdImgs = new CustomRecyclerAdapterForListOfMenuItems(this, m_cEvnts.getFoodMenu().get(0).getAttachments(), this);
+        m_cRecycMenuHor.setAdapter(m_cRecycAdImgs);
+
         displayProgressBar(-1, getResources().getString(R.string.app_name));
         RequestManager.getInstance(this).placeRequest(Constants.HALLS_LIST, Evnts[].class, this, null, false);
 
@@ -233,6 +247,12 @@ public class CoordinateParlax extends EveBaseActivity implements AppBarLayout.On
 
     @Override
     public void onInfoClick(int pPostion, Evnts pEvnts, View pView) {
+        m_cEvnts = pEvnts;
+        init();
+    }
+
+    @Override
+    public void onImgClick(int pPostion, Object pEvnts, View pView) {
 
     }
 

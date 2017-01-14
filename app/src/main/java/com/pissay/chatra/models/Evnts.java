@@ -26,6 +26,9 @@ public class Evnts {
     @SerializedName("parking")
     @Expose
     private Integer parking;
+    @SerializedName("type")
+    @Expose
+    private String type;
     @SerializedName("address")
     @Expose
     private Address address;
@@ -127,6 +130,14 @@ public class Evnts {
      */
     public void setParking(Integer parking) {
         this.parking = parking;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     /**

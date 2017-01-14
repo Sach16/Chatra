@@ -120,6 +120,17 @@ public class EveMacros {
 
     public static final String SINGLE_EVENT = "single_event";
 
+    public static final String TYPE_WEDDING = "TYPE_WEDDING";
+    public static final String TYPE_ENGAGEMENT = "TYPE_ENGAGEMENT";
+    public static final String TYPE_BIRTHDAY = "TYPE_BIRTHDAY";
+    public static final String TYPE_NAMING = "TYPE_NAMING";
+    public static final String TYPE_CORPORATE = "TYPE_CORPORATE";
+    public static final String TYPE_PARTY = "TYPE_PARTY";
+
+    public static final String FILTER_PLACE = "FILTER_PLACE";
+    public static final String FILTER_DATE = "FILTER_DATE";
+    public static final String FILTER_SESSION = "FILTER_SESSION";
+
     public static final int ABSENT = 0;
     public static final int PRESENT = 1;
     public static final int TODAY = 2;
@@ -391,7 +402,7 @@ public class EveMacros {
     public static void saveLoginAuth(Context pContext, String pValue){
         SharedPreferences prefs = pContext.getSharedPreferences("LOGIN_AUTH", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("LOGIN_AUTH_ID", pValue);
+        editor.putString("LOGIN_AUTH_TOKEN", pValue);
         editor.commit();
     }
 
@@ -466,7 +477,7 @@ public class EveMacros {
 
     public static String getLoginAuth(Context pContext){
         SharedPreferences prefs = pContext.getSharedPreferences("LOGIN_AUTH", Context.MODE_PRIVATE);
-        return prefs.getString("LOGIN_AUTH_ID", null);
+        return prefs.getString("LOGIN_AUTH_TOKEN", null);
     }
 
     public static boolean getOTPGen(Context pContext){
@@ -489,7 +500,7 @@ public class EveMacros {
 
     public static boolean removeLoginAuth(Context pContext) {
         SharedPreferences preferences = pContext.getSharedPreferences("LOGIN_AUTH", 0);
-        preferences.edit().remove("LOGIN_AUTH_ID").commit();
+        preferences.edit().remove("LOGIN_AUTH_TOKEN").commit();
         preferences.edit().remove("OTP_GEN").commit();
         return preferences.edit().remove("OTP_PHONE").commit();
     }

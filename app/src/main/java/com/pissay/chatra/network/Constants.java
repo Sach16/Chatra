@@ -35,6 +35,19 @@ public class Constants {
     public static final String ATTENDANCE_CALENDAR = "attendances/calendar";
     public static final String AUTHLOGOUT = "auth/logout";
     public static final String PDF_UPLOAD = "document";
+    public static final String PHONE = "phone";
+    public static final String OTP = "otp";
+
+    public static final String TYPE_WEDDING = "typeWedding";
+    public static final String TYPE_ENGAGEMENT = "typeEngagement";
+    public static final String TYPE_BIRTHDAY = "typeBirthday";
+    public static final String TYPE_NAMING = "typeNaming";
+    public static final String TYPE_CORPORATE = "typeCorporate";
+    public static final String TYPE_PARTY = "typeParty";
+
+    public static final String FILTER_PLACE = "filterPlace";
+    public static final String FILTER_DATE = "filterDate";
+    public static final String FILTER_SESSION = "filterSession";
 
     //old Struct
 //    public static final String PROJECTS = "projects";
@@ -43,6 +56,7 @@ public class Constants {
 
     //new Struct
     public static final String HALLS_LIST = "events";
+    public static final String LOGIN = "login/auth";
     public static final String INSCLUDE = "include";
     public static final String MESSAGES = "messages";
     public static final String DATA = "data";

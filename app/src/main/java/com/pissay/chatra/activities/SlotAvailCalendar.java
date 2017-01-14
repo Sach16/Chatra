@@ -146,8 +146,10 @@ public class SlotAvailCalendar extends AppCompatActivity implements SlotSelectLi
         m_cMonth = m_cObjCalendar.get(Calendar.MONTH);
         m_cYear = m_cObjCalendar.get(Calendar.YEAR);
         m_cBooked = new HashMap<>();
-        m_cBooked.put("2016-08-19", "2016-08-19");
-        m_cBooked.put("2016-08-20", "2016-08-20");
+        m_cBooked.put("2016-09-19", "2016-09-19");
+        m_cBooked.put("2016-09-20", "2016-09-20");
+        m_cBooked.put("2016-10-13", "2016-10-13");
+        m_cBooked.put("2016-10-20", "2016-10-20");
         init();
         initlizationCalender();
     }

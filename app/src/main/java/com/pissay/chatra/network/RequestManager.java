@@ -134,11 +134,11 @@ public class RequestManager<T> {
 //            jsObjRequest.setHeaders(headers);
 //        }
 
-        /*if (null != EveMacros.getLoginAuth(mCtx)) {
+        if (null != EveMacros.getLoginAuth(mCtx)) {
             HashMap<String, String> headers = new HashMap<String, String>();
             headers.put(Constants.AUTHORIZATION, "Bearer " + EveMacros.getLoginAuth(mCtx));
             jsObjRequest.setHeaders(headers);
-        }*/
+        }
 
 //        jsObjRequest.setTag("ZM");
         int socketTimeout = 30000;//30 seconds

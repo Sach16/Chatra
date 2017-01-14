@@ -25,6 +25,7 @@ import com.pissay.chatra.network.RequestManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -95,7 +96,27 @@ public class HallsList extends EveBaseActivity implements View.OnClickListener, 
         });
 
         displayProgressBar(-1, getResources().getString(R.string.app_name));
-        RequestManager.getInstance(this).placeRequest(Constants.HALLS_LIST, Evnts[].class, this, null, false);
+        HashMap<String, String> lParams = new HashMap<>();
+        if (!getIntent().getStringExtra(EveMacros.FILTER_SESSION).isEmpty())
+            lParams.put(Constants.FILTER_SESSION, getIntent().getStringExtra(EveMacros.FILTER_SESSION));
+        if (!getIntent().getStringExtra(EveMacros.FILTER_DATE).isEmpty())
+            lParams.put(Constants.FILTER_DATE, getIntent().getStringExtra(EveMacros.FILTER_DATE));
+        if (getIntent().getDoubleArrayExtra(EveMacros.FILTER_PLACE).length > 0)
+            lParams.put(Constants.FILTER_PLACE, String.format("%f#%f", getIntent().getDoubleArrayExtra(EveMacros.FILTER_PLACE)[0],
+                    getIntent().getDoubleArrayExtra(EveMacros.FILTER_PLACE)[1]));
+        if (getIntent().getBooleanExtra(EveMacros.TYPE_WEDDING, false))
+            lParams.put(Constants.TYPE_WEDDING, EveMacros.TYPE_WEDDING);
+        if (getIntent().getBooleanExtra(EveMacros.TYPE_BIRTHDAY, false))
+            lParams.put(Constants.TYPE_BIRTHDAY, EveMacros.TYPE_BIRTHDAY);
+        if (getIntent().getBooleanExtra(EveMacros.TYPE_ENGAGEMENT, false))
+            lParams.put(Constants.TYPE_ENGAGEMENT, EveMacros.TYPE_ENGAGEMENT);
+        if (getIntent().getBooleanExtra(EveMacros.TYPE_NAMING, false))
+            lParams.put(Constants.TYPE_NAMING, EveMacros.TYPE_NAMING);
+        if (getIntent().getBooleanExtra(EveMacros.TYPE_CORPORATE, false))
+            lParams.put(Constants.TYPE_CORPORATE, EveMacros.TYPE_CORPORATE);
+        if (getIntent().getBooleanExtra(EveMacros.TYPE_PARTY, false))
+            lParams.put(Constants.TYPE_PARTY, EveMacros.TYPE_PARTY);
+        RequestManager.getInstance(this).placeRequest(Constants.HALLS_LIST, Evnts[].class, this, lParams, false);
 
     }
 

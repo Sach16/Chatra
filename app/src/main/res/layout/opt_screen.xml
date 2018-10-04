@@ -35,7 +35,10 @@
                 android:background="@android:color/transparent"
                 android:layout_marginLeft="10dp"
                 android:textColorHint="@android:color/white"
+                android:textColor="@android:color/white"
                 android:hint="Phone"
+                android:imeOptions="actionNext"
+                android:inputType="phone"
                 android:paddingLeft="20dp"
                 android:textSize="18sp" />
 
@@ -62,15 +65,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/lock"/>
-
+1
             <EditText
                 android:id="@+id/OTP_TXT"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:layout_marginLeft="10dp"
+                android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
                 android:hint="****"
+                android:imeOptions="actionDone"
+                android:inputType="numberPassword"
                 android:paddingLeft="20dp"
                 android:textSize="18sp" />
 

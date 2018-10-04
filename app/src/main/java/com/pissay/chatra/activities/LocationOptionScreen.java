@@ -46,7 +46,7 @@ import butterknife.Optional;
 /**
  * Created by S.K. Pissay on 14/7/16.
  */
-public class LocationOptionScreen extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class LocationOptionScreen extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     @Nullable
     @BindView(R.id.LL_SEARCH)
@@ -139,7 +139,7 @@ public class LocationOptionScreen extends AppCompatActivity implements View.OnCl
     @Override
     protected void onResume() {
         super.onResume();
-        mSpTimeSlot.setOnItemClickListener(this);
+        mSpTimeSlot.setOnItemSelectedListener(this);
         mTimeSlotList = new ArrayList<>();
         mTimeSlotList.add("Full Day");
         mTimeSlotList.add("Morning Session - Lunch");
@@ -372,9 +372,14 @@ public class LocationOptionScreen extends AppCompatActivity implements View.OnCl
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
         if (position > -1)
             m_cSessPos = position;
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 
     public final class UIHandler extends Handler {

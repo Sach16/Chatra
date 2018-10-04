@@ -101,7 +101,7 @@ public class HallsList extends EveBaseActivity implements View.OnClickListener, 
             lParams.put(Constants.FILTER_SESSION, getIntent().getStringExtra(EveMacros.FILTER_SESSION));
         if (!getIntent().getStringExtra(EveMacros.FILTER_DATE).isEmpty())
             lParams.put(Constants.FILTER_DATE, getIntent().getStringExtra(EveMacros.FILTER_DATE));
-        if (getIntent().getDoubleArrayExtra(EveMacros.FILTER_PLACE).length > 0)
+        if (getIntent().getDoubleArrayExtra(EveMacros.FILTER_PLACE) != null && getIntent().getDoubleArrayExtra(EveMacros.FILTER_PLACE).length > 0)
             lParams.put(Constants.FILTER_PLACE, String.format("%f#%f", getIntent().getDoubleArrayExtra(EveMacros.FILTER_PLACE)[0],
                     getIntent().getDoubleArrayExtra(EveMacros.FILTER_PLACE)[1]));
         if (getIntent().getBooleanExtra(EveMacros.TYPE_WEDDING, false))

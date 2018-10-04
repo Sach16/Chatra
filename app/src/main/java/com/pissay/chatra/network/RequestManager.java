@@ -46,7 +46,7 @@ public class RequestManager<T> {
 
 //    public static final String LIVE_BASEFEED_URL = "http://stage.52.77.80.241.xip.io/api/v1/";
 //    public static final String LIVE_BASEFEED_URL = "http://moa.52.77.80.241.xip.io/api/v1/";
-    public static final String LIVE_BASEFEED_URL = "http://192.168.1.150:8080/";
+    public static final String LIVE_BASEFEED_URL = "http://192.168.0.134:8080/";
 //    public static final String TEST_BASEFEED_URL = "http://52.77.80.241/api/v1/";
     public static final String TEST_BASEFEED_URL = "http://api.52.77.80.241.xip.io/api/v1/";
 
